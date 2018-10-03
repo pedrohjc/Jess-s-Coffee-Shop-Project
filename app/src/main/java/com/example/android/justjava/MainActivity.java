@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     int coffeeNum = 0;
     String costumerName;
     EditText getting_name;
-    CheckBox checkBX;
+    CheckBox whipped_CreamBX, Chocolate_BX;
 
 
 
@@ -34,45 +34,65 @@ public class MainActivity extends AppCompatActivity {
     public void getNameCostumer(View view){
         getting_name = (EditText)findViewById(R.id.get_costumer_name);
         costumerName =  getting_name.getText().toString();
-        Toast.makeText(this, "Costumer's name saved", Toast.LENGTH_SHORT).show();
+        if(costumerName.matches("")){
+            Toast.makeText(this, "Enter your name", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this, "Costumer's name saved", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void resetButton(View view){
         coffeeNum =0;
         display(coffeeNum);
         displayPrice(coffeeNum);
-        displayOrder(0,0,"Costumer");
+        displayOrder(0,0,"Costumer","");
     }
 
     public void addcoffee(View view){
         coffeeNum++;
         display(coffeeNum);
-        displayPrice(coffeeNum*2);
+        displayPrice(calcPriceRegular());
     }
 
     public void lesscoffee(View view){
         coffeeNum--;
         display(coffeeNum);
-        displayPrice(coffeeNum*2);
+        displayPrice(calcPriceRegular());
+    }
+    public double addToppings(double value){
+        float pricenew = calcPriceRegular();
+        for(int i =0;i<coffeeNum;i++){
+            pricenew += value;
+        }
+        return pricenew;
     }
 
     //Method used to submit the order
     public void submitOrder(View view) {
-        checkBX = (CheckBox) findViewById(R.id.wc_box);
-        if(checkBX.isChecked()){
-            float pricenew = coffeeNum * 2;
-            for(int i =0;i<coffeeNum;i++){
-                pricenew += 0.5;
-            }
-            displayOrder(coffeeNum, pricenew,costumerName);
-        }else{
-        displayOrder(coffeeNum, coffeeNum*2,costumerName);}
+        whipped_CreamBX = (CheckBox) findViewById(R.id.wc_box);
+        Chocolate_BX = (CheckBox) findViewById(R.id.chocolate_box);
+        if(whipped_CreamBX.isChecked()&&Chocolate_BX.isChecked()){
+            displayOrder(coffeeNum, addToppings(0.8),costumerName,"WC + Choc");
+        }
+        else if(whipped_CreamBX.isChecked()){
+            displayOrder(coffeeNum, addToppings(0.3),costumerName,"Whipped \nCream");
+        }else if(Chocolate_BX.isChecked()){
+            displayOrder(coffeeNum, addToppings(0.5),costumerName,"Chocolate");
+        }
+        else{
+        displayOrder(coffeeNum, calcPriceRegular(),costumerName,"No Topping");
+        }
+    }
+
+    public int calcPriceRegular(){
+        int price = coffeeNum*2;
+        return price;
     }
 
 
-    /**
-     * This method displays the given quantity value on the screen.
-     */
+
+//    This method displays the given quantity value on the screen.
+
     private void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
@@ -82,13 +102,15 @@ public class MainActivity extends AppCompatActivity {
         quantityTextView.setText("" + number);
     }
 
-    private void displayOrder(int qnt, float price, String name) {
+    private void displayOrder(int qnt, double price, String name, String wp) {
         TextView quantityTextView = (TextView) findViewById(R.id.order_text_view);
         quantityTextView.setText("" + qnt);
         TextView priceTextView = (TextView) findViewById(R.id.order_price_text_view);
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(price));
         TextView nameTextView = (TextView) findViewById(R.id.costumer_name_order);
         nameTextView.setText("" + name);
+        TextView wpTextView = (TextView) findViewById(R.id.order_wp_text_view);
+        wpTextView.setText("" + wp);
     }
 
 }

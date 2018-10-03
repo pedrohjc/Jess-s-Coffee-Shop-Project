@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
+<ScrollView xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 <android.support.constraint.ConstraintLayout
@@ -17,29 +18,32 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical"
-        android:gravity="center">0
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">0
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/get_costumer_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Costumer Name"/>
+                android:hint="Costumer Name" />
+
             <Button
                 android:id="@+id/get_costumer_name_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="save"
                 android:onClick="getNameCostumer"
-                android:textAllCaps="true"/>
+                android:text="save"
+                android:textAllCaps="true" />
 
         </LinearLayout>
 
@@ -53,14 +57,14 @@
             android:text="Quantity"
             android:textAllCaps="true"
             android:textSize="15dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="15dp"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_margin="15dp">
+            android:orientation="horizontal">
 
             <Button
                 android:layout_width="70dp"
@@ -90,48 +94,62 @@
                 android:text="+"
                 android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:background="#E3F2FD">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:background="#E3F2FD"
+            android:orientation="horizontal">
 
-            android:fontFamily="sans-serif-light"
-            android:padding="8dp"
-            android:gravity="right"
-            android:text="Price"
-            android:textAllCaps="true"
-            android:layout_weight="1"
-            android:textSize="15dp"
-            android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
 
-        <TextView
-            android:id="@+id/price_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="8dp"
-            android:gravity="left"
-            android:padding="8dp"
-            android:text="$0"
-            android:layout_weight="1"
-            android:textColor="@android:color/black"
-            android:textSize="15dp"
-            android:textStyle="bold" />
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-light"
+                android:gravity="right"
+                android:padding="8dp"
+                android:text="Price"
+                android:textAllCaps="true"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/price_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:padding="8dp"
+                android:text="$0"
+                android:textColor="@android:color/black"
+                android:textSize="15dp"
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
+
             <CheckBox
+                android:id="@+id/wc_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:text="Whipped Cream"
-                android:padding="20dp"
-                android:textSize="16sp"
-                android:id="@+id/wc_box"/>
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/chocolate_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:padding="10dp"
+                android:text="Chocolate Bitches!"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -172,22 +190,22 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="86dp"
             android:background="#E3F2FD"
-            android:orientation="horizontal"
-            android:padding="10dp">
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/costumer_name_order"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-light"
                 android:gravity="center"
                 android:padding="8dp"
                 android:text="Costumer"
                 android:textAllCaps="true"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -241,6 +259,34 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="$0"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="center"
+                    android:text="Topping"
+                    android:textAllCaps="true"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/order_wp_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text=" "
                     android:textColor="@android:color/black"
                     android:textSize="15dp"
                     android:textStyle="bold" />
