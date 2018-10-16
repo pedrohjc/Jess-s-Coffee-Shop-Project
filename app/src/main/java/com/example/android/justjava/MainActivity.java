@@ -4,7 +4,9 @@
 package com.example.android.justjava;
 
 
+import android.content.Intent;
 import android.icu.text.NumberFormat;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,6 +20,8 @@ import android.widget.Toast;
  */
 public class MainActivity extends AppCompatActivity {
     int coffeeNum = 0;
+    Boolean wp=false,ch=false;
+    double testv;
     String costumerName;
     EditText getting_name;
     CheckBox whipped_CreamBX, Chocolate_BX;
@@ -55,9 +59,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void lesscoffee(View view){
+        if(coffeeNum <= 0){
+            Toast.makeText(this, "Minimum of 0 coffee", Toast.LENGTH_SHORT).show();
+            coffeeNum= 0;
+        }else{
         coffeeNum--;
         display(coffeeNum);
         displayPrice(calcPriceRegular());
+        }
     }
     public double addToppings(double value){
         float pricenew = calcPriceRegular();
@@ -72,15 +81,84 @@ public class MainActivity extends AppCompatActivity {
         whipped_CreamBX = (CheckBox) findViewById(R.id.wc_box);
         Chocolate_BX = (CheckBox) findViewById(R.id.chocolate_box);
         if(whipped_CreamBX.isChecked()&&Chocolate_BX.isChecked()){
+            wp = true;
+            ch = true;
+            testv = addToppings(0.8);
             displayOrder(coffeeNum, addToppings(0.8),costumerName,"WC + Choc");
         }
         else if(whipped_CreamBX.isChecked()){
             displayOrder(coffeeNum, addToppings(0.3),costumerName,"Whipped \nCream");
+            wp = true;
         }else if(Chocolate_BX.isChecked()){
             displayOrder(coffeeNum, addToppings(0.5),costumerName,"Chocolate");
+            ch = true;
         }
         else{
         displayOrder(coffeeNum, calcPriceRegular(),costumerName,"No Topping");
+        }
+    }
+
+    public void finishOrder(View view) {
+        getting_name = (EditText)findViewById(R.id.get_costumer_name);
+        costumerName =  getting_name.getText().toString();
+        double value;
+        String email = "Write your email here!";
+        String subject = "Order for " + costumerName;
+        String body;
+        String chooserTitle = "This is the Tittle";
+
+        if (whipped_CreamBX.isChecked() && Chocolate_BX.isChecked()) {
+            value= addToppings(0.8);
+            String valueafter;
+            valueafter = NumberFormat.getCurrencyInstance().format(value);
+            String bodywpch = "Hello, " + costumerName + "\n\nYour order is " + coffeeNum + " Coffee \nWith wippedCream and Chocolate\nPaying: " + valueafter + " Dollars";
+            Uri uri = Uri.parse("mailto:" + email)
+                    .buildUpon()
+                    .appendQueryParameter("subject", subject)
+                    .appendQueryParameter("body", bodywpch)
+                    .build();
+
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, uri);
+            startActivity(Intent.createChooser(emailIntent, chooserTitle));
+        } else if (whipped_CreamBX.isChecked()) {
+            value= addToppings(0.3);
+            String valueafter;
+            valueafter = NumberFormat.getCurrencyInstance().format(value);
+            String bodywp = "Hello, " + costumerName + "\n\nYour order is " + coffeeNum + " Coffee \nWith wippedCream\nPaying: " + valueafter + " Dollars";
+            Uri uri = Uri.parse("mailto:" + email)
+                    .buildUpon()
+                    .appendQueryParameter("subject", subject)
+                    .appendQueryParameter("body", bodywp)
+                    .build();
+
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, uri);
+            startActivity(Intent.createChooser(emailIntent, chooserTitle));
+        } else if (Chocolate_BX.isChecked()) {
+            value= addToppings(0.5);
+            String valueafter;
+            valueafter = NumberFormat.getCurrencyInstance().format(value);
+            String bodych = "Hello, " + costumerName + "\n\nYour order is " + coffeeNum + " Coffee \nWith Chocolate\nPaying: " + valueafter + " Dollars";
+            Uri uri = Uri.parse("mailto:" + email)
+                    .buildUpon()
+                    .appendQueryParameter("subject", subject)
+                    .appendQueryParameter("body", bodych)
+                    .build();
+
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, uri);
+            startActivity(Intent.createChooser(emailIntent, chooserTitle));
+        } else {
+            value = calcPriceRegular();
+            String valueafter;
+            valueafter = NumberFormat.getCurrencyInstance().format(value);
+            body = "Hello, " + costumerName + "\n\nYour order is " + coffeeNum + " Coffee \n With no Toppings \nPaying: " + valueafter + " Dollars";
+            Uri uri = Uri.parse("mailto:" + email)
+                    .buildUpon()
+                    .appendQueryParameter("subject", subject)
+                    .appendQueryParameter("body", body)
+                    .build();
+
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, uri);
+            startActivity(Intent.createChooser(emailIntent, chooserTitle));
         }
     }
 
