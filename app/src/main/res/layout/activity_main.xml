@@ -36,7 +36,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="  Name" />
+                    android:hint="@string/Hint_name"/>
 
                 <Button
                     android:id="@+id/get_costumer_name_btn"
@@ -44,7 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:onClick="getNameCostumer"
-                    android:text="save"
+                    android:text="@string/save"
                     android:textAllCaps="true" />
 
             </LinearLayout>
@@ -164,7 +164,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:onClick="submitOrder"
-                    android:text="Add"
+                    android:text="@string/Add"
                     android:textAllCaps="true"
                     android:textSize="20dp"
                     android:textStyle="bold" />
