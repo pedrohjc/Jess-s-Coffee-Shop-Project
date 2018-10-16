@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
     int coffeeNum = 0;
     Boolean wp=false,ch=false;
     double testv;
-    String costumerName;
-    EditText getting_name;
+    String costumerName, costumerEmail;
+    EditText getting_name,getting_email;
     CheckBox whipped_CreamBX, Chocolate_BX;
 
 
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         getting_name = (EditText)findViewById(R.id.get_costumer_name);
         costumerName =  getting_name.getText().toString();
         double value;
-        String email = "Write your email here!";
+        String email = " Enter Your email";
         String subject = "Order for " + costumerName;
         String body;
         String chooserTitle = "This is the Tittle";
