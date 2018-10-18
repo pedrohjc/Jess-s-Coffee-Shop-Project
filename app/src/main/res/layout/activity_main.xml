@@ -29,7 +29,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                >
 
                 <EditText
                     android:id="@+id/get_costumer_name"
@@ -45,21 +46,22 @@
                     android:layout_weight="3"
                     android:onClick="getNameCostumer"
                     android:text="@string/save"
-                    android:textAllCaps="true" />
+                    android:textAllCaps="true"
+                    />
 
             </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#E3F2FD"
+                android:layout_height="match_parent"
                 android:fontFamily="sans-serif-light"
                 android:gravity="center"
-                android:padding="8dp"
                 android:text="Quantity"
                 android:textAllCaps="true"
                 android:textSize="15dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:elevation="20dp"
+                android:background="@android:drawable/dialog_holo_light_frame"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -100,13 +102,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#E3F2FD"
-                android:orientation="horizontal">
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:orientation="horizontal"
+                >
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-light"
                     android:gravity="right"
@@ -142,7 +144,8 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:text="Whipped Cream"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:elevation="10dp" />
 
                 <CheckBox
                     android:id="@+id/chocolate_box"
@@ -151,7 +154,8 @@
                     android:layout_marginLeft="10dp"
                     android:padding="10dp"
                     android:text="Chocolate Bitches!"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -194,7 +198,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="86dp"
                 android:background="#E3F2FD"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:elevation="20dp">
 
                 <TextView
                     android:id="@+id/costumer_name_order"
